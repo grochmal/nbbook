@@ -1,0 +1,4 @@
+nbconvert>=5.0.0
+nbformat>=4.0.0
+click>=7.0
+

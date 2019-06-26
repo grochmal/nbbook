@@ -1,0 +1,16 @@
+# ignores for python and vim
+
+# python 3
+__pycache__
+
+# virtualenv
+/venv-nbbook
+
+# setuptools
+/dist
+/MANIFEST
+/src/*.egg-info
+
+# vim
+*.swp
+
