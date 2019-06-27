@@ -9,6 +9,21 @@ from . import LOG
 class Exporter(object):
 
     def __init__(self, **kw):
+        """
+        Parse the command line and figure out what we are exporting.
+
+        Whether we are exporting a full book or just a single or a handful
+        of notebooks.  We also update the configuration from the already
+        read configuration file.
+
+        This only performs the validation that the input looks correct,
+        it does not attempt to check whether file-system entities
+        are in the correct state.  Check `_validate_fs` below for
+        the file-system checks.
+        """
+        pass
+
+    def _validate_fs(self):
         pass
 
     def read_nbs(self):

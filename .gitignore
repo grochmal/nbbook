@@ -11,6 +11,10 @@ __pycache__
 /MANIFEST
 /src/*.egg-info
 
+# coverage
+/.coverage
+/coverage.xml
+
 # vim
 *.swp
 

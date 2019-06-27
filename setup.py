@@ -25,7 +25,8 @@ REQS = (
     'pyyaml >= 5.0.0',
 )
 REQS_TESTS = (
-    'pytest>=4.0.0',
+    'pytest >= 4.0.0',
+    'coverage >= 4.0.0',
 )
 REQS_EXTRA = {
     'tests': REQS_TESTS,

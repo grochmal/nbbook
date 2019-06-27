@@ -1,9 +1,12 @@
 README for `nbbook`
 
 [![Build Status][tr_build]][tr_link]
+[![Test Coverage][cv_build]][cv_link]
 
 [tr_build]: https://travis-ci.org/grochmal/nbbook.svg?branch=master
 [tr_link]: https://travis-ci.org/grochmal/nbbook "Travis CI"
+[cv_build]: https://codecov.io/gh/grochmal/nbbook/branch/master/graph/badge.svg
+[cv_link]: https://codecov.io/gh/nbbook "CodeCov"
 
 
 ## Introduction

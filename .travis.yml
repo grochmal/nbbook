@@ -1,4 +1,6 @@
 language: python
+dist: xenial
+sudo: required
 python:
   - "3.6"
   - "3.7"
@@ -6,6 +8,11 @@ install:
   - pip install -r requirements.txt
   - pip install -r requirements_tests.txt
   - pip install .
+  - pip install codecov
 script:
   - pytest -p no:warning tests
+  - coverage run --source src/nbbook pytest -p no:warning tests
+after_success:
+  # codecov already runs coverage xml -i (and then uplods it)
+  - codecov
 
