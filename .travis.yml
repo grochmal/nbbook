@@ -14,5 +14,7 @@ script:
   - coverage run --source nbbook -m pytest -p no:warnings tests
 after_success:
   # codecov already runs coverage xml -i (and then uploads it)
+  - coverage xml
+  - cat coverage.xml
   - codecov
 

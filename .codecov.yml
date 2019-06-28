@@ -2,4 +2,7 @@ coverage:
   round: down
   precision: 2
 comments: off
+fixes:
+  - "virtualenv/python3.7.1/lib/python3.7/site-packages/::src/"
+  - "venv-nbbook/lib/python3.7/site-packages/::src/"
 
