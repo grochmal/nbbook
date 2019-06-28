@@ -10,9 +10,9 @@ install:
   - pip install .
   - pip install codecov
 script:
-  - pytest -p no:warning tests
-  - coverage run --source src/nbbook -m pytest -p no:warnings tests
+  - pytest -p no:warnings tests
+  - coverage run --source nbbook -m pytest -p no:warnings tests
 after_success:
-  # codecov already runs coverage xml -i (and then uplods it)
+  # codecov already runs coverage xml -i (and then uploads it)
   - codecov
 

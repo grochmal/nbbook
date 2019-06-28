@@ -8,7 +8,7 @@ import click
 import yaml
 from . import LOG, LOG_LEVELS
 from .util import parse_config, parse_defs
-from .export import HTMLExporter, LaTeXExporter
+from .export import HTMLExporter, LaTeXExporter, BadUsage
 
 
 @click.group()
@@ -16,6 +16,8 @@ from .export import HTMLExporter, LaTeXExporter
               help='Be more verbose, up to -vv.')
 @click.option('-n', '--dry-run', is_flag=True,
               help='Do not write out anything, just report what will be done.')
+@click.option('-s', '--single', is_flag=True,
+              help='Export only a single notebook, instead of a full book.')
 @click.option('-c', '--config', type=click.File('r'),
               help='Static configuration for every notebook export.')
 @click.option('-o', '--output', type=click.File('w'),
@@ -24,7 +26,7 @@ from .export import HTMLExporter, LaTeXExporter
               type=click.Path(file_okay=False, dir_okay=True, writable=True),
               help='Output directory for a complete book export.')
 @click.pass_context
-def cli(ctx, verbose, dry_run, config, output, root):
+def cli(ctx, verbose, dry_run, single, config, output, root):
     click.echo(LOG)
     LOG.setLevel(LOG_LEVELS[verbose])
     click.echo(LOG)
@@ -33,6 +35,7 @@ def cli(ctx, verbose, dry_run, config, output, root):
     ctx.obj['CWD'] = cwd
     ctx.obj['VERBOSE'] = verbose
     ctx.obj['DRY_RUN'] = dry_run
+    ctx.obj['SINGLE'] = single
     ctx.obj['CONFIG'] = parse_config(config)
     ctx.obj['OUTPUT'] = output
     ctx.obj['ROOT'] = root
@@ -51,13 +54,17 @@ def latex(ctx, doctype, nbinput):
     kw = dict(
         cwd=ctx.obj['CWD'],
         dry_run=ctx.obj['DRY_RUN'],
+        single=ctx.obj['SINGLE'],
         config=ctx.obj['CONFIG'],
         output=ctx.obj['OUTPUT'],
         root=ctx.obj['ROOT'],
         doctype=doctype,
         nbinput=nbinput,
     )
-    exporter = LaTeXExporter(**kw)
+    try:
+        exporter = LaTeXExporter(**kw)
+    except BadUsage as e:
+        raise click.UsageError(str(e))
     exporter.read_nbs()
     exporter.build_output()
 
@@ -84,6 +91,7 @@ def html(ctx, imgfmt, mathjax, extrastyle, title, baseurl, section, nbinput):
     kw = dict(
         cwd=ctx.obj['CWD'],
         dry_run=ctx.obj['DRY_RUN'],
+        single=ctx.obj['SINGLE'],
         config=ctx.obj['CONFIG'],
         output=ctx.obj['OUTPUT'],
         root=ctx.obj['ROOT'],
@@ -95,7 +103,10 @@ def html(ctx, imgfmt, mathjax, extrastyle, title, baseurl, section, nbinput):
         section=section,
         nbinput=nbinput,
     )
-    exporter = HTMLExporter(**kw)
+    try:
+        exporter = HTMLExporter(**kw)
+    except BadUsage as e:
+        raise click.UsageError(str(e))
     exporter.read_nbs()
     exporter.build_output()
 

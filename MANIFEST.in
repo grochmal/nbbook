@@ -1,4 +1,4 @@
 include README README.md MANIFEST.in COPYING
-recursive-include src/manaeng *.py
+recursive-include src/nbbook *.py *.templ *.css
 recursive-include docs *.md *.svg
 

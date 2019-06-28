@@ -35,6 +35,7 @@ CONSOLE_SCRIPTS = (
     'nbbook=nbbook.cmd:cli',
 )
 SRC = 'src'
+DATA = {'nbbook': ['templates/*.templ', 'static/*.css']}
 TESTS = ('*.tests', 'tests.*', '*.tests.*', 'tests')
 
 setup(
@@ -48,6 +49,7 @@ setup(
     long_description=read('README'),
     packages=find_packages(SRC, exclude=TESTS),
     package_dir={'': SRC},
+    package_data=DATA,
     include_package_data=True,
     classifiers=CLS,
     install_requires=REQS,

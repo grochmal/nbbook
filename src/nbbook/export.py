@@ -6,6 +6,10 @@ import nbconvert
 from . import LOG
 
 
+class BadUsage(RuntimeError):
+    pass
+
+
 class Exporter(object):
 
     def __init__(self, **kw):
