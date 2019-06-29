@@ -1,9 +1,11 @@
+# test with
+# cat .codecov.yml | curl --data-binary @- https://codecov.io/validate
 coverage:
   round: down
   precision: 2
-comments: off
+#comments: false
 fixes:
   - "virtualenv/python*/lib/python*/site-packages/::src/"
   - "venv-nbbook/lib/python*/site-packages/::src/"
-  - "home/travis/virtualenv/python*/lib/python*/site-packages/::src/"
+  - "home/travis/virtualenv/python*/lib/python*/site-packages/nbbook/::/"
 

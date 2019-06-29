@@ -13,8 +13,10 @@ script:
   - pytest -p no:warnings tests
   - coverage run --source nbbook -m pytest -p no:warnings tests
 after_success:
-  # codecov already runs coverage xml -i (and then uploads it)
   - coverage xml
+  # fix coverage.xml ourselves because codecov is too stupid
+  # to understand its own path fixers
+  - sed -ie s+filename=\"/home/travis/virtualenv/python...../lib/python.../site-packages/nbbook/+filename=\"+ coverage.xml
   - cat coverage.xml
   - codecov
 
