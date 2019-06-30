@@ -8,7 +8,7 @@ def read(fname):
 
 # Full list of classifiers can be found here:
 # https://pypi.python.org/pypi?%3Aaction=list_classifiers
-CLS = (
+CLS = [
   'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
   'Development Status :: 3 - Alpha',
   'Environment :: Web Environment',
@@ -17,7 +17,7 @@ CLS = (
   'Operating System :: POSIX',
   'Programming Language :: Python',
   'Topic :: Text Processing :: Markup',
-)
+]
 REQS = (
     'nbconvert >= 5.0.0',
     'nbformat >= 4.0.0',
@@ -28,8 +28,13 @@ REQS_TESTS = (
     'pytest >= 4.0.0',
     'coverage >= 4.0.0',
 )
+REQS_DIST = (
+    'twine >= 1.0.0',
+    'tox >= 3.0.0',
+)
 REQS_EXTRA = {
     'tests': REQS_TESTS,
+    'dist': REQS_DIST,
 }
 CONSOLE_SCRIPTS = (
     'nbbook=nbbook.cmd:cli',

@@ -10,13 +10,13 @@ install:
   - pip install .
   - pip install codecov
 script:
-  - pytest -p no:warnings tests
-  - coverage run --source nbbook -m pytest -p no:warnings tests
+  - pytest
+  - coverage run -m pytest
 after_success:
   - coverage xml
   # fix coverage.xml ourselves because codecov is too stupid
   # to understand its own path fixers
   - sed -ie s+filename=\"/home/travis/virtualenv/python...../lib/python.../site-packages/nbbook/+filename=\"+ coverage.xml
-  - cat coverage.xml
+  - grep filename= coverage.xml
   - codecov
 

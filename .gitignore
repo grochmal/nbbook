@@ -10,6 +10,11 @@ __pycache__
 /dist
 /MANIFEST
 /src/*.egg-info
+/build
+
+# testing
+/.pytest_cache
+/.tox
 
 # coverage
 /.coverage
